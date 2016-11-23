@@ -1,0 +1,3 @@
+rootProject.name = 'tapolympics'
+
+include ':app'
