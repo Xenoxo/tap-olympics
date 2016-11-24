@@ -25,12 +25,12 @@ export default class Homescene extends Component {
   };
 
 	render() {
-    const {presses} = this.props
+    const {presses, handleButtonPress} = this.props
 		return (
 			<View style={styles.container}>
 				<Text>Number of presses</Text>
         <Text>{presses}</Text>
-        <TouchableOpacity onPress={this.handlePress.bind(this)} style={styles.button}>
+        <TouchableOpacity onPress={handleButtonPress} style={styles.button}>
           <Text style={{textAlign: 'center', color:'white'}}>Press Me!</Text>
         </TouchableOpacity>
 			</View>

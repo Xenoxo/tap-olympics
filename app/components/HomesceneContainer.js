@@ -4,11 +4,19 @@ import React, {Component} from 'react';
 import Homescene from './Homescene';
 import {Test} from '../components/Test'
 import { connect } from 'react-redux';
+import { actionCreators } from './HomesceneRedux';
+
+
 // import * as counterActions from '../actions/counterActions';
 
 const mapStateToProps = (state) => ({
   presses: state.presses,
 })
+
+// const mapActionToProps = (action) => ({
+//   action: actionCreator,
+// })
+
 
 class HomesceneContainer extends Component {
   constructor(props) {
@@ -16,13 +24,20 @@ class HomesceneContainer extends Component {
   }
 
   componentDidMount(){
-    // console.log("read here")
+    console.log(this.props)
   }
 
+  onButtonPress = () => {
+    const {dispatch} = this.props
+    dispatch(actionCreators.increment())
+  };
+
   render() {
-    const {presses} = this.props
+    const { presses } = this.props
     return (
-      <Homescene presses={presses}/>
+      <Homescene 
+        presses={presses}
+        handleButtonPress={this.onButtonPress}/> //{..actions}
     )
   }
 }
