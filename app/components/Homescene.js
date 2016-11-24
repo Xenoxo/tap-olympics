@@ -16,19 +16,7 @@ export default class Homescene extends Component {
     super(props);
   }
 
-  // handlePress(){
-  //   this.setState({presses: this.state.presses + 1})
-  //   // console.log('pressing');
-  // }
-  
-  // onButtonPress = () => {
-  //   const {dispatch} = this.props
-  //   dispatch(actionCreators.increment(1))
-  // };
-
   componentDidMount(){
-    console.log("GET GUD");
-    console.log(this.props)
   }
 
   handlePress = () => {
@@ -36,23 +24,15 @@ export default class Homescene extends Component {
     console.log(this.props);
   };
 
-  // render() {
-  //   return <Text>YOU MADE IT ALL THE WAY DOWN!</Text>
-  // }
 	render() {
     const {presses} = this.props
 		return (
 			<View style={styles.container}>
 				<Text>Number of presses</Text>
         <Text>{presses}</Text>
-        <TouchableOpacity onPress={this.handlePress.bind(this)}>
-          <View style={styles.button}>
-            <Text style={{textAlign: 'center', color:'white'}}>Press Me!</Text>
-          </View>
+        <TouchableOpacity onPress={this.handlePress.bind(this)} style={styles.button}>
+          <Text style={{textAlign: 'center', color:'white'}}>Press Me!</Text>
         </TouchableOpacity>
-        {/*<TouchableOpacity onPress={this.setState({presses: this.state.presses + 1})}>
-          
-        </TouchableOpacity>        */}
 			</View>
 		);
 	}

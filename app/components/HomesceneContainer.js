@@ -1,17 +1,10 @@
 'use strict';
 
-
-// import {bindActionCreators} from 'redux';
-
 import React, {Component} from 'react';
 import Homescene from './Homescene';
 import {Test} from '../components/Test'
-// import * as counterActions from '../actions/counterActions';
 import { connect } from 'react-redux';
-
-// @connect(state => ({
-//   state: state.counter
-// }))
+// import * as counterActions from '../actions/counterActions';
 
 const mapStateToProps = (state) => ({
   presses: state.presses,
@@ -23,18 +16,8 @@ class HomesceneContainer extends Component {
   }
 
   componentDidMount(){
-    console.log("read here")
-    console.log(this.props)
+    // console.log("read here")
   }
-
-  // render() {
-  //   const { state, actions } = this.props;
-  //   return (
-  //     <Counter
-  //       counter={state.count}
-  //       {...actions} />
-  //   );
-  // }
 
   render() {
     const {presses} = this.props
@@ -43,10 +26,5 @@ class HomesceneContainer extends Component {
     )
   }
 }
-
-// export default connect(
-//   state => ({state: state.counter}), 
-//   (dispatch) => ({actions: bindActionCreators(counterActions, dispatch)})
-//   )(CounterApp);
 
 export default connect(mapStateToProps)(HomesceneContainer);
