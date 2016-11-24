@@ -7,23 +7,44 @@ import {
   TouchableOpacity
 } from 'react-native';
 
+import { connect } from 'react-redux'
 
-export class Homescene extends Component {
+import { actionCreators } from './HomesceneRedux'
+
+export default class Homescene extends Component {
   constructor(props){
     super(props);
-    this.state = {
-      presses: 0,
-    }
   }
-  handlePress(){
-    this.setState({presses: this.state.presses + 1})
-    // console.log('pressing');
+
+  // handlePress(){
+  //   this.setState({presses: this.state.presses + 1})
+  //   // console.log('pressing');
+  // }
+  
+  // onButtonPress = () => {
+  //   const {dispatch} = this.props
+  //   dispatch(actionCreators.increment(1))
+  // };
+
+  componentDidMount(){
+    console.log("GET GUD");
+    console.log(this.props)
   }
+
+  handlePress = () => {
+    console.log('yo');
+    console.log(this.props);
+  };
+
+  // render() {
+  //   return <Text>YOU MADE IT ALL THE WAY DOWN!</Text>
+  // }
 	render() {
+    const {presses} = this.props
 		return (
 			<View style={styles.container}>
 				<Text>Number of presses</Text>
-        <Text>{this.state.presses}</Text>
+        <Text>{presses}</Text>
         <TouchableOpacity onPress={this.handlePress.bind(this)}>
           <View style={styles.button}>
             <Text style={{textAlign: 'center', color:'white'}}>Press Me!</Text>
