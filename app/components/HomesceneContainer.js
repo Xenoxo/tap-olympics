@@ -2,20 +2,17 @@
 
 import React, {Component} from 'react';
 import Homescene from './Homescene';
-import {Test} from '../components/Test'
 import { connect } from 'react-redux';
-import { actionCreators } from './HomesceneRedux';
+
+// import { actionCreators } from './HomesceneRedux';
 
 
-// import * as counterActions from '../actions/counterActions';
+// import * as buttonActions from '../actions/buttonActions';
+import {buttonActions} from '../actions/buttonActions';
 
 const mapStateToProps = (state) => ({
   presses: state.presses,
 })
-
-// const mapActionToProps = (action) => ({
-//   action: actionCreator,
-// })
 
 
 class HomesceneContainer extends Component {
@@ -24,12 +21,19 @@ class HomesceneContainer extends Component {
   }
 
   componentDidMount(){
+    console.log(buttonActions)
     console.log(this.props)
   }
 
-  onButtonPress = () => {
+  onButtonPressUp = () => {
     const {dispatch} = this.props
-    dispatch(actionCreators.increment())
+    console.log(dispatch)
+    dispatch(buttonActions.increment())
+  };
+
+  onButtonPressDown = () => {
+    const {dispatch} = this.props
+    dispatch(buttonActions.increment())
   };
 
   render() {
@@ -37,7 +41,8 @@ class HomesceneContainer extends Component {
     return (
       <Homescene 
         presses={presses}
-        handleButtonPress={this.onButtonPress}/> //{..actions}
+        handleUpButtonPress={this.onButtonPressUp}
+        handleDownButtonPress={this.onButtonPressDown}/> //{..actions}
     )
   }
 }

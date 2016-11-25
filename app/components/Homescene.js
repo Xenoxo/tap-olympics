@@ -7,10 +7,6 @@ import {
   TouchableOpacity
 } from 'react-native';
 
-import { connect } from 'react-redux'
-
-import { actionCreators } from './HomesceneRedux'
-
 export default class Homescene extends Component {
   constructor(props){
     super(props);
@@ -19,20 +15,18 @@ export default class Homescene extends Component {
   componentDidMount(){
   }
 
-  handlePress = () => {
-    console.log('yo');
-    console.log(this.props);
-  };
-
 	render() {
-    const {presses, handleButtonPress} = this.props
+    const {presses, handleUpButtonPress, handleDownButtonPress} = this.props
 		return (
 			<View style={styles.container}>
 				<Text>Number of presses</Text>
         <Text>{presses}</Text>
-        <TouchableOpacity onPress={handleButtonPress} style={styles.button}>
-          <Text style={{textAlign: 'center', color:'white'}}>Press Me!</Text>
+        <TouchableOpacity onPress={handleUpButtonPress} style={styles.button}>
+          <Text style={{textAlign: 'center', color:'white'}}>Up</Text>
         </TouchableOpacity>
+        <TouchableOpacity onPress={handleDownButtonPress} style={styles.button}>
+          <Text style={{textAlign: 'center', color:'white'}}>Down</Text>
+        </TouchableOpacity>        
 			</View>
 		);
 	}

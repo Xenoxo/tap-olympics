@@ -1,11 +1,14 @@
 import React, {Component} from 'react';
 
-import { createStore } from 'redux'
-import { Provider } from 'react-redux'
-import { reducer } from '../components/HomesceneRedux'
-import HomesceneContainer from '../components/HomesceneContainer'
+import { createStore, combineReducers } from 'redux';
+import { Provider } from 'react-redux';
+// import { reducer } from '../components/HomesceneRedux'
+// import * as reducers from '../reducers/index'; // Not working for some reason
+import homescene from '../reducers/homescene';
+import HomesceneContainer from '../components/HomesceneContainer';
 
-const store = createStore(reducer)
+// const reducer = combineReducers(reducers); //not working - going with default homescene
+const store = createStore(homescene);
 
 export default class App extends Component {
   render() {
