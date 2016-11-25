@@ -1,14 +1,10 @@
 'use strict';
 
 import React, {Component} from 'react';
-import Homescene from './Homescene';
 import { connect } from 'react-redux';
+import { buttonActions } from '../actions/buttonActions';
 
-// import { actionCreators } from './HomesceneRedux';
-
-
-// import * as buttonActions from '../actions/buttonActions';
-import {buttonActions} from '../actions/buttonActions';
+import Homescene from './Homescene';
 
 const mapStateToProps = (state) => ({
   presses: state.presses,
@@ -21,19 +17,21 @@ class HomesceneContainer extends Component {
   }
 
   componentDidMount(){
-    console.log(buttonActions)
-    console.log(this.props)
   }
 
-  onButtonPressUp = () => {
+  otherFunction(){
+    // things can happen here that may in crease
+    // or decrease the count which calls the functions
+  }
+
+  countIncrease = () => {
     const {dispatch} = this.props
-    console.log(dispatch)
     dispatch(buttonActions.increment())
   };
 
-  onButtonPressDown = () => {
+  countDecrease = () => {
     const {dispatch} = this.props
-    dispatch(buttonActions.increment())
+    dispatch(buttonActions.decrement())
   };
 
   render() {
@@ -41,8 +39,8 @@ class HomesceneContainer extends Component {
     return (
       <Homescene 
         presses={presses}
-        handleUpButtonPress={this.onButtonPressUp}
-        handleDownButtonPress={this.onButtonPressDown}/> //{..actions}
+        handleUpButtonPress={this.countIncrease}
+        handleDownButtonPress={this.countDecrease}/> //{..actions}
     )
   }
 }

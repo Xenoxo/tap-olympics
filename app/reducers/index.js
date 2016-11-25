@@ -1,4 +1,4 @@
-import homescene from './homescene';
+import {homescene} from './homescene';
 
 export {
 	homescene
