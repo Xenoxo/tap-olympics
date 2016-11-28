@@ -7,7 +7,7 @@ import { buttonActions } from '../actions/buttonActions';
 import Homescene from './Homescene';
 
 const mapStateToProps = (state) => ({
-  presses: state.presses,
+  presses: state.homescene.presses, //pressess is the specific state to be modified on this component
 })
 
 
@@ -17,6 +17,7 @@ class HomesceneContainer extends Component {
   }
 
   componentDidMount(){
+    // console.log(this.props)
   }
 
   otherFunction(){
