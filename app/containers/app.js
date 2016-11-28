@@ -12,7 +12,6 @@ const store = createStore(reducer);
 
 export default class App extends Component {
   componentDidMount(){
-    console.log(store)
   }  
   render() {
     return (

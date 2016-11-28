@@ -2,12 +2,17 @@
 
 import React, {Component} from 'react';
 import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 import { buttonActions } from '../actions/buttonActions';
 
 import Homescene from './Homescene';
 
 const mapStateToProps = (state) => ({
   presses: state.homescene.presses, //pressess is the specific state to be modified on this component
+})
+
+const boundActionCreators = (dispatch) => ({
+  actions: bindActionCreators(buttonActions, dispatch)
 })
 
 
@@ -17,7 +22,7 @@ class HomesceneContainer extends Component {
   }
 
   componentDidMount(){
-    // console.log(this.props)
+    // console.log("the props are",this.props)
   }
 
   otherFunction(){
@@ -36,14 +41,13 @@ class HomesceneContainer extends Component {
   };
 
   render() {
-    const { presses } = this.props
+    const { presses, actions } = this.props
     return (
       <Homescene 
         presses={presses}
-        handleUpButtonPress={this.countIncrease}
-        handleDownButtonPress={this.countDecrease}/> //{..actions}
+        {...actions}/>
     )
   }
 }
 
-export default connect(mapStateToProps)(HomesceneContainer);
+export default connect(mapStateToProps, boundActionCreators)(HomesceneContainer);

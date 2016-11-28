@@ -13,18 +13,19 @@ export default class Homescene extends Component {
   }
 
   componentDidMount(){
+    console.log("from Homescene",this.props)
   }
 
 	render() {
-    const {presses, handleUpButtonPress, handleDownButtonPress} = this.props
+    const {presses, increment, decrement} = this.props
 		return (
 			<View style={styles.container}>
 				<Text>Number of presses</Text>
         <Text>{presses}</Text>
-        <TouchableOpacity onPress={handleUpButtonPress} style={styles.button}>
+        <TouchableOpacity onPress={increment} style={styles.button}>
           <Text style={{textAlign: 'center', color:'white'}}>Up</Text>
         </TouchableOpacity>
-        <TouchableOpacity onPress={handleDownButtonPress} style={styles.button}>
+        <TouchableOpacity onPress={decrement} style={styles.button}>
           <Text style={{textAlign: 'center', color:'white'}}>Down</Text>
         </TouchableOpacity>        
 			</View>
