@@ -11,7 +11,8 @@ export const buttonActions = {
   decrement: () => {
   	return {type: types.DECREMENT, payload: 1}
   },
-  jumpTen: () => {
-    return {type: types.INCREMENT, payload: 10}
+  set: (animatedAmount) => {
+    return {type: types.SET, payload: animatedAmount}
   },
 }
+

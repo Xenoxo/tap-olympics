@@ -29,38 +29,56 @@ class HomesceneContainer extends Component {
 
   componentDidMount(){
     // console.log("the props are",this.props)
+    console.log('props after mount', this.props)
     this.animateBar();
   }
 
-  otherFunction(){
-    // things can happen here that may in crease
-    // or decrease the count which calls the functions
-  }
+  // newProgress(){
+  //   if (this.props.progress._value < 290) {
+  //     let num = this.props.progress._value + 10
+  //     this.state.value.setValue(num); // reducer
 
-  // increase(){
-  //   if (this.state.value._value < 290) {
-  //     let num = this.state.value._value + 10
-  //     this.state.value.setValue(num);
   //     this.animateBar(num);
   //   }
-  // }  
+
+  // }
 
   animateBar(newAmt=BASE_PROGRESS){
     let remaining = (newAmt/BASE_PROGRESS) * 3000
-     Animated.timing(
-       this.props.progress,
-       {
+    
+    
+    console.log('props in animateBar', this.props.progress._value)
+    Animated.timing(
+      this.props.progress,
+      {
         toValue: 0,
         duration: remaining,
         easing: Easing.linear()
        }
      ).start();
+    console.log('why i no start???')
   }
+
+  tapHandler(){
+    //let num = this.props.progress._value + 10
+    var thing = () => this.animateBar()
+    let yo = new Animated.Value(300)
+    // this.props.progress.setValue(300)
+    this.props.actions.set(10)
+    console.log('props in taphandler', this.props.progress)
+    this.animateBar(200);
+    // thing()
+    
+  }
+
+
 
   render() {
     const { presses, progress, actions } = this.props
+    console.log(this.props.progress);
     return (
-      <Homescene 
+      <Homescene
+        tapHandler={this.tapHandler.bind(this)}
         presses={presses}
         progress={progress}
         {...actions}/>

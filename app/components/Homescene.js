@@ -29,8 +29,12 @@ export default class Homescene extends Component {
   //   }
   // }
 
+
+  // SET NO LONGER BREAKS APP, BUT VALUE NOT WHAT Animate EXPECTS?!
+
 	render() {
-    const {presses, progress, increment, decrement, jumpTen} = this.props
+    const {presses, progress, increment, decrement, set} = this.props
+    console.log('inside Homescene', progress)
 		return (
 			<View style={styles.container}>
 				<Text>Number of presses</Text>
@@ -38,10 +42,10 @@ export default class Homescene extends Component {
         <TouchableOpacity onPress={increment} style={styles.button}>
           <Text style={{textAlign: 'center', color:'white'}}>Up</Text>
         </TouchableOpacity>
-        <TouchableOpacity onPress={jumpTen} style={styles.button}>
+        <TouchableOpacity onPress={decrement} style={styles.button}>
           <Text style={{textAlign: 'center', color:'white'}}>Down</Text>
         </TouchableOpacity>
-        <TouchableOpacity onPress={jumpTen} style={styles.button}>
+        <TouchableOpacity onPress={this.props.tapHandler} style={styles.button}> 
           <Text style={{textAlign: 'center', color:'white'}}>increase</Text>
         </TouchableOpacity>
         <View style={styles.barContainer}>

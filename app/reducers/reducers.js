@@ -21,21 +21,29 @@ const initialState = {
 
 export const homescene = (state = initialState, action = {}) => {
   // const {todos} = state
+  // let obj = {}
+  // obj[] = 
+
   const {type, payload} = action
 
-  const {presses} = state;
+  const {presses, progress} = state;
 
   switch (type) {
     case types.INCREMENT:
       return {
         ...state,
-        presses: state.presses + payload,
+        presses: presses + payload,
       }
     case types.DECREMENT:
       return {
         ...state,
-        presses: state.presses - payload,
+        presses: presses - payload,
       }
+    case types.SET:
+      return {
+        ...state,
+        progress: progress.setValue(200) // progress.setValue(300)// new Animated.Value(200)//progress._value + payload
+      }      
   }
   return state
 }
