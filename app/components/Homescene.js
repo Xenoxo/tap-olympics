@@ -9,6 +9,8 @@ import {
   Easing
 } from 'react-native';
 
+var incamt = new Animated.Value(300);
+
 export default class Homescene extends Component {
   constructor(props){
     super(props);
@@ -16,21 +18,31 @@ export default class Homescene extends Component {
       value: new Animated.Value(300),
     }
     var theref;
+    this._animatedValue = new Animated.Value(300)
   }
 
   componentDidMount() {
-
+    this.animateBar()
   }
 
-  startAnimation(){
-     Animated.timing(          // Uses easing functions
+  animateBar(newAmt = 300){
+    let remaining = (newAmt/300) * 3000
+     Animated.timing(
        this.state.value,
        {
         toValue: 0,
-        duration: 1000,
+        duration: remaining,
         easing: Easing.linear()
-       }       // Configuration
-     ).start();                // Don't forget start!    
+       }
+     ).start();
+  }
+
+  increase(){
+    if (this.state.value._value < 290) {
+      let num = this.state.value._value + 10
+      this.state.value.setValue(num);
+      this.animateBar(num);
+    }
   }
 
 	render() {
@@ -45,7 +57,7 @@ export default class Homescene extends Component {
         <TouchableOpacity onPress={decrement} style={styles.button}>
           <Text style={{textAlign: 'center', color:'white'}}>Down</Text>
         </TouchableOpacity>
-        <TouchableOpacity onPress={this.startAnimation.bind(this)} style={styles.button}>
+        <TouchableOpacity onPress={this.increase.bind(this)} style={styles.button}>
           <Text style={{textAlign: 'center', color:'white'}}>increase</Text>
         </TouchableOpacity>
         <View style={styles.barContainer}
@@ -56,6 +68,7 @@ export default class Homescene extends Component {
           <Animated.View style={[styles.bar,{ width: this.state.value}]}>
           </Animated.View>
         </View>
+        <Text>{this.state.value._value}</Text>
 			</View>
 		);
 	}
@@ -88,9 +101,9 @@ const styles = StyleSheet.create({
   },
   barContainer:{
     // alignSelf: 'stretch',
-    width: 300,
     // marginLeft: 15,
-    // marginRight: 15,
+    // marginRight: 15,    
+    width: 300,
     borderWidth: 1,
     height:50,
   },
