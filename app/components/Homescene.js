@@ -27,7 +27,15 @@ export default class Homescene extends Component {
         </TouchableOpacity>
         <TouchableOpacity onPress={decrement} style={styles.button}>
           <Text style={{textAlign: 'center', color:'white'}}>Down</Text>
-        </TouchableOpacity>        
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.button}>
+          <Text style={{textAlign: 'center', color:'white'}}>increase</Text>
+        </TouchableOpacity>
+        <View style={styles.barContainer}>
+          <View style={styles.bar}>
+            
+          </View>
+        </View>
 			</View>
 		);
 	}
@@ -56,6 +64,18 @@ const styles = StyleSheet.create({
     width: 60,
     height: 60,
     borderRadius: 50,
+    backgroundColor: '#BD2C00',
+  },
+  barContainer:{
+    alignSelf: 'stretch',
+    marginLeft: 15,
+    marginRight: 15,
+    borderWidth: 1,
+    height:50,
+  },
+  bar:{
+    height:50,
+    width:70,
     backgroundColor: '#BD2C00',
   },
 });
