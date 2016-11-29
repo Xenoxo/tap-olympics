@@ -12,9 +12,6 @@ import {
 export default class Homescene extends Component {
   constructor(props){
     super(props);
-    this.state ={
-      value: 0,
-    }
   }
 
   // componentDidMount() {
@@ -32,6 +29,7 @@ export default class Homescene extends Component {
 
   // SET NO LONGER BREAKS APP, BUT VALUE NOT WHAT Animate EXPECTS?!
 
+  // i need to press a button and style needs to change for progress bar
 	render() {
     const {presses, progress, increment, decrement, set} = this.props
     console.log('inside Homescene', progress)

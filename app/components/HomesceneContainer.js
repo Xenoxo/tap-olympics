@@ -25,11 +25,14 @@ const BASE_PROGRESS = 300;
 class HomesceneContainer extends Component {
   constructor(props) {
     super(props);
+    this.state ={
+      progress: new Animated.Value(300),
+    }    
   }
 
   componentDidMount(){
     // console.log("the props are",this.props)
-    console.log('props after mount', this.props)
+    //console.log('props after mount', this.props)
     this.animateBar();
   }
 
@@ -47,40 +50,36 @@ class HomesceneContainer extends Component {
     let remaining = (newAmt/BASE_PROGRESS) * 3000
     
     
-    console.log('props in animateBar', this.props.progress._value)
+    // console.log('props in animateBar', this.props.progress._value)
     Animated.timing(
-      this.props.progress,
+      this.state.progress,
       {
         toValue: 0,
         duration: remaining,
         easing: Easing.linear()
        }
-     ).start();
-    console.log('why i no start???')
+     ).start(()=> console.log('i win'));
+    
   }
 
   tapHandler(){
-    //let num = this.props.progress._value + 10
-    var thing = () => this.animateBar()
-    let yo = new Animated.Value(300)
-    // this.props.progress.setValue(300)
-    this.props.actions.set(10)
-    console.log('props in taphandler', this.props.progress)
-    this.animateBar(200);
-    // thing()
-    
+    if (this.state.progress._value < 290) {
+      console.log('in here', this.props.progress);
+      let num = this.state.progress._value + 10
+      this.state.progress.setValue(num);
+      this.animateBar(num);
+    }    
   }
 
 
 
   render() {
     const { presses, progress, actions } = this.props
-    console.log(this.props.progress);
     return (
       <Homescene
         tapHandler={this.tapHandler.bind(this)}
         presses={presses}
-        progress={progress}
+        progress={this.state.progress}
         {...actions}/>
     )
   }
