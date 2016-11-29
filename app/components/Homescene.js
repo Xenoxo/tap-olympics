@@ -9,44 +9,28 @@ import {
   Easing
 } from 'react-native';
 
-var incamt = new Animated.Value(300);
-
 export default class Homescene extends Component {
   constructor(props){
     super(props);
     this.state ={
-      value: new Animated.Value(300),
-    }
-    var theref;
-    this._animatedValue = new Animated.Value(300)
-  }
-
-  componentDidMount() {
-    this.animateBar()
-  }
-
-  animateBar(newAmt = 300){
-    let remaining = (newAmt/300) * 3000
-     Animated.timing(
-       this.state.value,
-       {
-        toValue: 0,
-        duration: remaining,
-        easing: Easing.linear()
-       }
-     ).start();
-  }
-
-  increase(){
-    if (this.state.value._value < 290) {
-      let num = this.state.value._value + 10
-      this.state.value.setValue(num);
-      this.animateBar(num);
+      value: 0,
     }
   }
+
+  // componentDidMount() {
+  //   this.animateBar()
+  // }
+
+  // increase(){
+  //   if (this.state.value._value < 290) {
+  //     let num = this.state.value._value + 10
+  //     this.state.value.setValue(num);
+  //     this.animateBar(num);
+  //   }
+  // }
 
 	render() {
-    const {presses, increment, decrement} = this.props
+    const {presses, progress, increment, decrement, jumpTen} = this.props
 		return (
 			<View style={styles.container}>
 				<Text>Number of presses</Text>
@@ -54,21 +38,18 @@ export default class Homescene extends Component {
         <TouchableOpacity onPress={increment} style={styles.button}>
           <Text style={{textAlign: 'center', color:'white'}}>Up</Text>
         </TouchableOpacity>
-        <TouchableOpacity onPress={decrement} style={styles.button}>
+        <TouchableOpacity onPress={jumpTen} style={styles.button}>
           <Text style={{textAlign: 'center', color:'white'}}>Down</Text>
         </TouchableOpacity>
-        <TouchableOpacity onPress={this.increase.bind(this)} style={styles.button}>
+        <TouchableOpacity onPress={jumpTen} style={styles.button}>
           <Text style={{textAlign: 'center', color:'white'}}>increase</Text>
         </TouchableOpacity>
-        <View style={styles.barContainer}
-          ref={(input)=>{
-            theref = input;
-          }
-        }>
-          <Animated.View style={[styles.bar,{ width: this.state.value}]}>
+        <View style={styles.barContainer}>
+          <Animated.View style={[styles.bar,{ width: progress}]}>
           </Animated.View>
         </View>
-        <Text>{this.state.value._value}</Text>
+        
+        <Text>hey</Text>
 			</View>
 		);
 	}

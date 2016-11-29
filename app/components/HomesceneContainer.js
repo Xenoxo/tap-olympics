@@ -5,16 +5,22 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { buttonActions } from '../actions/buttonActions';
 
+import {
+  Animated,
+  Easing
+} from 'react-native';
+
 import Homescene from './Homescene';
 
 const mapStateToProps = (state) => ({
   presses: state.homescene.presses, //pressess is the specific state to be modified on this component
+  progress: state.homescene.progress,
 })
 
 const boundActionCreators = (dispatch) => ({
   actions: bindActionCreators(buttonActions, dispatch)
 })
-
+const BASE_PROGRESS = 300;
 
 class HomesceneContainer extends Component {
   constructor(props) {
@@ -23,6 +29,7 @@ class HomesceneContainer extends Component {
 
   componentDidMount(){
     // console.log("the props are",this.props)
+    this.animateBar();
   }
 
   otherFunction(){
@@ -30,21 +37,32 @@ class HomesceneContainer extends Component {
     // or decrease the count which calls the functions
   }
 
-  countIncrease = () => {
-    const {dispatch} = this.props
-    dispatch(buttonActions.increment())
-  };
+  // increase(){
+  //   if (this.state.value._value < 290) {
+  //     let num = this.state.value._value + 10
+  //     this.state.value.setValue(num);
+  //     this.animateBar(num);
+  //   }
+  // }  
 
-  countDecrease = () => {
-    const {dispatch} = this.props
-    dispatch(buttonActions.decrement())
-  };
+  animateBar(newAmt=BASE_PROGRESS){
+    let remaining = (newAmt/BASE_PROGRESS) * 3000
+     Animated.timing(
+       this.props.progress,
+       {
+        toValue: 0,
+        duration: remaining,
+        easing: Easing.linear()
+       }
+     ).start();
+  }
 
   render() {
-    const { presses, actions } = this.props
+    const { presses, progress, actions } = this.props
     return (
       <Homescene 
         presses={presses}
+        progress={progress}
         {...actions}/>
     )
   }
