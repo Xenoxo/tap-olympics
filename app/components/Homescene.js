@@ -4,16 +4,33 @@ import {
   StyleSheet,
   Text,
   View,
-  TouchableOpacity
+  TouchableOpacity,
+  Animated,
+  Easing
 } from 'react-native';
 
 export default class Homescene extends Component {
   constructor(props){
     super(props);
+    this.state ={
+      value: new Animated.Value(300),
+    }
+    var theref;
   }
 
-  componentDidMount(){
-    console.log("from Homescene",this.props)
+  componentDidMount() {
+
+  }
+
+  startAnimation(){
+     Animated.timing(          // Uses easing functions
+       this.state.value,
+       {
+        toValue: 0,
+        duration: 1000,
+        easing: Easing.linear()
+       }       // Configuration
+     ).start();                // Don't forget start!    
   }
 
 	render() {
@@ -28,13 +45,16 @@ export default class Homescene extends Component {
         <TouchableOpacity onPress={decrement} style={styles.button}>
           <Text style={{textAlign: 'center', color:'white'}}>Down</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.button}>
+        <TouchableOpacity onPress={this.startAnimation.bind(this)} style={styles.button}>
           <Text style={{textAlign: 'center', color:'white'}}>increase</Text>
         </TouchableOpacity>
-        <View style={styles.barContainer}>
-          <View style={styles.bar}>
-            
-          </View>
+        <View style={styles.barContainer}
+          ref={(input)=>{
+            theref = input;
+          }
+        }>
+          <Animated.View style={[styles.bar,{ width: this.state.value}]}>
+          </Animated.View>
         </View>
 			</View>
 		);
@@ -67,9 +87,10 @@ const styles = StyleSheet.create({
     backgroundColor: '#BD2C00',
   },
   barContainer:{
-    alignSelf: 'stretch',
-    marginLeft: 15,
-    marginRight: 15,
+    // alignSelf: 'stretch',
+    width: 300,
+    // marginLeft: 15,
+    // marginRight: 15,
     borderWidth: 1,
     height:50,
   },
