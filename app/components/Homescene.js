@@ -32,7 +32,7 @@ export default class Homescene extends Component {
   // i need to press a button and style needs to change for progress bar
 	render() {
     const {presses, progress, increment, decrement, set} = this.props
-    console.log('inside Homescene', progress)
+    console.log('inside Homescene', increment)
 		return (
 			<View style={styles.container}>
 				<Text>Number of presses</Text>

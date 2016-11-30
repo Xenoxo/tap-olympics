@@ -27,24 +27,13 @@ class HomesceneContainer extends Component {
     super(props);
     this.state ={
       progress: new Animated.Value(300),
-    }    
+    }
+    this.tapHandler = this.tapHandler.bind(this);
   }
 
   componentDidMount(){
-    // console.log("the props are",this.props)
-    //console.log('props after mount', this.props)
     this.animateBar();
   }
-
-  // newProgress(){
-  //   if (this.props.progress._value < 290) {
-  //     let num = this.props.progress._value + 10
-  //     this.state.value.setValue(num); // reducer
-
-  //     this.animateBar(num);
-  //   }
-
-  // }
 
   animateBar(newAmt=BASE_PROGRESS){
     let remaining = (newAmt/BASE_PROGRESS) * 3000
@@ -63,23 +52,23 @@ class HomesceneContainer extends Component {
   }
 
   tapHandler(){
-    if (this.state.progress._value < 290) {
-      console.log('in here', this.props.progress);
+    let timeleft = this.state.progress._value
+    let {increment} = this.props.actions
+    if ( timeleft < 290 && timeleft > 0) {
       let num = this.state.progress._value + 10
       this.state.progress.setValue(num);
       this.animateBar(num);
-    }    
+    }
+    increment();
   }
-
-
 
   render() {
     const { presses, progress, actions } = this.props
     return (
       <Homescene
-        tapHandler={this.tapHandler.bind(this)}
-        presses={presses}
+        tapHandler={this.tapHandler}
         progress={this.state.progress}
+        presses={presses}
         {...actions}/>
     )
   }
