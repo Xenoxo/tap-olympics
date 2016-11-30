@@ -9,14 +9,13 @@ import {
   Easing
 } from 'react-native';
 
-export default class Homescene extends Component {
+export default class Buttonscene extends Component {
   constructor(props){
     super(props);
   }
   
 	render() {
     const {presses, progress, increment, set} = this.props
-    console.log('inside Homescene', increment)
 		return (
 			<View style={styles.container}>
 				<Text>Number of presses</Text>

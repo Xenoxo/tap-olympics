@@ -10,7 +10,7 @@ import {
   Easing
 } from 'react-native';
 
-import Homescene from './Homescene';
+import Buttonscene from './Buttonscene';
 
 const mapStateToProps = (state) => ({
   presses: state.homescene.presses, //pressess is the specific state to be modified on this component
@@ -22,7 +22,7 @@ const boundActionCreators = (dispatch) => ({
 })
 const BASE_PROGRESS = 300;
 
-class HomesceneContainer extends Component {
+class ButtonsceneContainer extends Component {
   constructor(props) {
     super(props);
     this.state ={
@@ -66,7 +66,7 @@ class HomesceneContainer extends Component {
   render() {
     const { presses, progress, actions } = this.props
     return (
-      <Homescene
+      <Buttonscene
         tapHandler={this.tapHandler}
         progress={this.state.progress}
         presses={presses}
@@ -75,4 +75,4 @@ class HomesceneContainer extends Component {
   }
 }
 
-export default connect(mapStateToProps, boundActionCreators)(HomesceneContainer);
+export default connect(mapStateToProps, boundActionCreators)(ButtonsceneContainer);

@@ -8,9 +8,6 @@ export const buttonActions = {
   increment: () => {
     return {type: types.INCREMENT, payload: 1}
   },
-  decrement: () => {
-  	return {type: types.DECREMENT, payload: 1}
-  },
   set: (animatedAmount) => {
     return {type: types.SET, payload: animatedAmount}
   },
