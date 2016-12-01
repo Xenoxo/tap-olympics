@@ -9,25 +9,21 @@ import {
   Easing
 } from 'react-native';
 
+import { Actions } from 'react-native-router-flux';
+
 export default class Homescene extends Component {
   constructor(props){
     super(props);
+    this.nav_buttonscene = Actions.buttonscene.bind(this);
   }
-  
+
 	render() {
     const {presses, progress, increment, set} = this.props
     console.log('inside Homescene', increment)
 		return (
 			<View style={styles.container}>
-				<Text>Number of presses</Text>
-        <Text>{presses}</Text>
-        <TouchableOpacity onPress={this.props.tapHandler} style={styles.button}> 
-          <Text style={{textAlign: 'center', color:'white'}}>increase</Text>
-        </TouchableOpacity>
-        <View style={styles.barContainer}>
-          <Animated.View style={[styles.bar,{ width: progress}]}>
-          </Animated.View>
-        </View>
+				<Text>This is the Homescene!</Text>
+        <Text onPress={this.nav_buttonscene}>PRESS TO GO</Text>
 			</View>
 		);
 	}
