@@ -16,21 +16,15 @@ export default class Homescene extends Component {
   constructor(props){
     super(props);
     this.nav_buttonscene = Actions.buttonscene.bind(this);
-    this.nav_statscene = Actions.statscene.bind(this);
   }
 
 	render() {
     const {presses, progress, increment, set} = this.props
-    console.log('inside Homescene', increment)
 		return (
 			<View style={styles.container}>
-				<Text>This is the Homescene!</Text>
-        <TouchableOpacity onPress={this.nav_buttonscene} style={styles.button}>
-          <Text style={styles.buttontxt}>GO TO BUTTONSCENE</Text>
-        </TouchableOpacity>
-        <TouchableOpacity onPress={this.nav_statscene} style={styles.button}>
-          <Text style={styles.buttontxt}>STATS</Text>
-        </TouchableOpacity>
+        <Text style={{textAlign: 'left'}}>Presses last session: </Text>
+        <Text style={{textAlign: 'left'}}>Highest presses: </Text>
+        <Text style={{textAlign: 'left'}}>Total number of presses: </Text>
 			</View>
 		);
 	}
@@ -41,7 +35,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#F5FCFF',
+    backgroundColor: '#BBDEFB',
   },
   welcome: {
     fontSize: 20,
@@ -78,3 +72,12 @@ const styles = StyleSheet.create({
     color: 'white'
   }
 });
+
+
+/*
+        <TouchableOpacity onPress={this.nav_buttonscene} style={styles.button}>
+          <Text style={styles.buttontxt}>GO TO BUTTONSCENE</Text>
+        </TouchableOpacity>
+        <TouchableOpacity onPress={this.nav_buttonscene} style={styles.button}>
+          <Text style={styles.buttontxt}>STATS</Text>
+        </TouchableOpacity>*/
