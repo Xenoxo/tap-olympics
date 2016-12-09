@@ -13,8 +13,8 @@ import {
 import Buttonscene from './Buttonscene';
 
 const mapStateToProps = (state) => ({
-  presses: state.homescene.presses, //pressess is the specific state to be modified on this component
-  progress: state.homescene.progress,
+  presses: state.buttonscene.presses, //pressess is the specific state to be modified on this component
+  progress: state.buttonscene.progress,
 })
 
 const boundActionCreators = (dispatch) => ({

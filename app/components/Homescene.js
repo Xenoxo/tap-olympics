@@ -20,8 +20,8 @@ export default class Homescene extends Component {
   }
 
 	render() {
-    const {presses, progress, increment, set} = this.props
-    console.log('inside Homescene', increment)
+    // const {presses, progress, increment, set} = this.props
+    // console.log('inside Homescene', increment)
 		return (
 			<View style={styles.container}>
 				<Text>This is the Homescene!</Text>
@@ -29,7 +29,7 @@ export default class Homescene extends Component {
           <Text style={styles.buttontxt}>GO TO BUTTONSCENE</Text>
         </TouchableOpacity>
         <TouchableOpacity onPress={this.nav_statscene} style={styles.button}>
-          <Text style={styles.buttontxt}>STATS</Text>
+          <Text style={styles.buttontxt}>GO TO STATS</Text>
         </TouchableOpacity>
 			</View>
 		);

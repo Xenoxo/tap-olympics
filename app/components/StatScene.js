@@ -12,10 +12,10 @@ import {
 
 import { Actions } from 'react-native-router-flux';
 
-export default class Homescene extends Component {
+export default class StatScene extends Component {
   constructor(props){
     super(props);
-    this.nav_buttonscene = Actions.buttonscene.bind(this);
+    // this.nav_buttonscene = Actions.buttonscene.bind(this);
   }
 
 	render() {

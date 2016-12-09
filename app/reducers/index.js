@@ -1,5 +1,5 @@
-import {homescene} from './reducers';
+import {buttonscene} from './reducers';
 
 export {
-	homescene
+	buttonscene,
 };

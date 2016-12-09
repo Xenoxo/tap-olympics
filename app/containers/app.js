@@ -5,7 +5,7 @@ import { Provider } from 'react-redux';
 import * as reducers from '../reducers';
 import { Router, Scene } from 'react-native-router-flux';
 
-import HomesceneContainer from '../components/HomesceneContainer';
+import Homescene from '../components/Homescene';
 import ButtonsceneContainer from '../components/ButtonsceneContainer';
 import StatScene from '../components/StatScene';
 
@@ -27,9 +27,9 @@ export default class App extends Component {
 			<Provider store={store}>
 				<Router>
 					<Scene key="root">
-						<Scene 
+						<Scene
 							key="homescene"
-							component={HomesceneContainer}
+							component={Homescene}
 							hideNavBar={true}
 							initial/>
 						<Scene 

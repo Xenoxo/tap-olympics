@@ -12,4 +12,3 @@ export const buttonActions = {
     return {type: types.SET, payload: animatedAmount}
   },
 }
-

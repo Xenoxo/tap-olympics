@@ -15,11 +15,7 @@ const initialState = {
   progress: new Animated.Value(300),
 }
 
-// initialState for this value is going to be 300
-
-// reducer that takes increment and adds 30
-
-export const homescene = (state = initialState, action = {}) => {
+export const buttonscene = (state = initialState, action = {}) => {
   // const {todos} = state
   // let obj = {}
   // obj[] = 
@@ -48,6 +44,11 @@ export const homescene = (state = initialState, action = {}) => {
   return state
 }
 
+
+
+// export const statscene = (state = initialState, action = {}) => {
+//   return
+// }
 
 /*export const timerRelated = (state = initialState, action = {}) => {
   const {type, payload} = action
