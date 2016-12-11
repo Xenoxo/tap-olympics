@@ -16,10 +16,12 @@ export default class Buttonscene extends Component {
   
 	render() {
     const {presses, progress, increment, set} = this.props
+    // console.log('updating');
 		return (
 			<View style={styles.container}>
 				<Text>Number of presses</Text>
         <Text>{presses}</Text>
+        <Text>score from realm: {this.props.propertyScore}</Text>
         <TouchableOpacity onPress={this.props.tapHandler} style={styles.button}> 
           <Text style={{textAlign: 'center', color:'white'}}>increase</Text>
         </TouchableOpacity>
@@ -27,6 +29,9 @@ export default class Buttonscene extends Component {
           <Animated.View style={[styles.bar,{ width: progress}]}>
           </Animated.View>
         </View>
+        <TouchableOpacity onPress={this.props.navback} style={styles.button}> 
+          <Text style={{textAlign: 'center', color:'white'}}>back</Text>
+        </TouchableOpacity>        
 			</View>
 		);
 	}
