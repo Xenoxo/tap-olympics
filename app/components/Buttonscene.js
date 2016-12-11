@@ -21,7 +21,6 @@ export default class Buttonscene extends Component {
 			<View style={styles.container}>
 				<Text>Number of presses</Text>
         <Text>{presses}</Text>
-        <Text>score from realm: {this.props.propertyScore}</Text>
         <TouchableOpacity onPress={this.props.tapHandler} style={styles.button}> 
           <Text style={{textAlign: 'center', color:'white'}}>increase</Text>
         </TouchableOpacity>

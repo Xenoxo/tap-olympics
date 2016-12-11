@@ -14,8 +14,6 @@ import {
 
 import Buttonscene from './Buttonscene';
 
-import Realm from 'realm';
-
 const mapStateToProps = (state) => ({
   presses: state.buttonscene.presses,
   progress: state.buttonscene.progress,
@@ -34,16 +32,9 @@ class ButtonsceneContainer extends Component {
       progress: new Animated.Value(300),
     }
     this.tapHandler = this.tapHandler.bind(this);
-    // var realm = this.props.realm;
   }
 
   componentDidMount(){
-    if (this.props.realm === 0){
-      realm.write(() => {
-        realm.create('Player');
-      });
-    }
-    // console.log(this.props.realm);
     this.animateBar();
   }
 
@@ -71,18 +62,12 @@ class ButtonsceneContainer extends Component {
   tapHandler(){
     let timeleft = this.state.progress._value
     let {increment} = this.props.actions
-    // console.log(this.props.realm);
     if ( timeleft < 290 && timeleft > 0) {
-      this.props.realm.write(() => {
-        this.props.realm.score += 1;
-      });      
       let num = this.state.progress._value + 10
       this.state.progress.setValue(num);
       this.animateBar(num);
     } else {
-      // realm.write(() => {
-      //   realm.create('Dog', {name: 'Rezzx'});
-      // });
+
     }
     increment(); // passes the value through the reducer to increment
   }
@@ -94,7 +79,6 @@ class ButtonsceneContainer extends Component {
         tapHandler={this.tapHandler}
         progress={this.state.progress}
         presses={presses}
-        propertyScore={this.props.realm.objects('Player').length}
         navback={Actions.homescene.bind(this)}
         {...actions}/>
     )
