@@ -9,7 +9,8 @@ import { Actions } from 'react-native-router-flux';
 
 import {
   Animated,
-  Easing
+  Easing,
+  AsyncStorage
 } from 'react-native';
 
 import Buttonscene from './Buttonscene';
@@ -51,8 +52,17 @@ class ButtonsceneContainer extends Component {
      ).start( // things in here are called everytime the value changes
        (obj)=>{
         if (obj.finished){
-          Actions.homescene();
-          // console.log(obj.finished);
+          try {
+            AsyncStorage.setItem('latestcount', this.props.presses.toString());
+            AsyncStorage.getItem('totalcount').then((result)=>{
+              let num = parseInt(result) + this.props.presses;
+              AsyncStorage.setItem('totalcount', num.toString());
+            })
+            
+          } catch (error) {
+            // Error saving data
+          }
+        Actions.homescene();
         }
         
       }

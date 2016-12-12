@@ -6,8 +6,7 @@ import {
   View,
   TouchableOpacity,
   TouchableNativeFeedback,
-  Animated,
-  Easing
+  AsyncStorage
 } from 'react-native';
 
 import { Actions } from 'react-native-router-flux';
@@ -15,16 +14,37 @@ import { Actions } from 'react-native-router-flux';
 export default class StatScene extends Component {
   constructor(props){
     super(props);
-    // this.nav_buttonscene = Actions.buttonscene.bind(this);
+    this.state ={
+      lastcount: 0,
+      totalcount: 0,
+    }
+  }
+
+  async getAsyncData(){
+    try {
+      await AsyncStorage.getItem('latestcount').then((result)=>{//promise for asyncstorage
+        this.setState({lastcount: result});
+      });
+      await AsyncStorage.getItem('totalcount').then((result)=>{
+        this.setState({totalcount: result});
+      });
+    } catch (error) {
+      // Error saving data
+    }
+  }
+
+  componentDidMount(){
+    this.getAsyncData();
   }
 
 	render() {
+    // console.log(this.state.count);
     const {presses, progress, increment, set} = this.props
 		return (
 			<View style={styles.container}>
-        <Text style={{textAlign: 'left'}}>Presses last session: </Text>
+        <Text style={{textAlign: 'left'}}>Presses last session: {this.state.lastcount}</Text>
         <Text style={{textAlign: 'left'}}>Highest presses: </Text>
-        <Text style={{textAlign: 'left'}}>Total number of presses: </Text>
+        <Text style={{textAlign: 'left'}}>Total number of presses: {this.state.totalcount}</Text>
 			</View>
 		);
 	}
